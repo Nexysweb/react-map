@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import {Map, Type} from './lib';
 
 function App() {
+  const addressDefault:Partial<Type.Address> = {street:'Champ de Mars 5', country: 'France', postalcode: '75007' , city: 'Paris'}
+  const [ address, setAddress ] = React.useState<string>('La Tour Eiffel')
+  const [ addressMap, setAddressMap ] = React.useState<string | Partial<Type.Address>>(addressDefault)
+
+  const handleClick = () => {
+    setAddressMap(address)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h3>Address shown on map</h3>
+    <input type="text" value={address} onChange={x => setAddress(x.target.value)}/>
+    <button onClick={handleClick}>Update</button>
+    <br/>
+    <Map address={addressMap}/>
+    </>
   );
 }
 
