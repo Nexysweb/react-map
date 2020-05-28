@@ -1,7 +1,12 @@
 {
-  "name": "react-map",
+  "name": "@nexys/react-map",
   "version": "0.1.0",
-  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [ 
+    "dist/*"
+  ],
+  "license": "MIT",
   "dependencies": {
     "@nexys/utils": "^3.9.0"
   },
