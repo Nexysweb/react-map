@@ -37,7 +37,7 @@ export const mapFromLatLon = (lat: string, lon: string, zoomLevel: number, apiKe
     key: apiKey
   }
   
-  const params:string = Object.entries(cs).map(([k,v]) => k + '=' + encodeURIComponent(v)).join('&');
+  const params:string = Object.entries(cs).map(([k,v]) => k + '=' + encodeURIComponent(v || '')).join('&');
 
   return'https://maps.google.com/maps?' + params
 }
