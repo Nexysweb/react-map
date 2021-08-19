@@ -1,5 +1,4 @@
 import * as T from './type'
-import { url as Uurl } from '@nexys/utils'
 
 const addressToString = (a:Partial<T.Address>) :string=> [a.street, a.postalcode, a.city, a.county, a.state, a.country]
   .map(x => x ? x : '')
@@ -37,6 +36,8 @@ export const mapFromLatLon = (lat: string, lon: string, zoomLevel: number, apiKe
     output: 'embed',
     key: apiKey
   }
+  
+  const params:string = Object.entries(cs).map(([k,v]) => k + '=' + encodeURIComponent(v)).join('&');
 
-  return'https://maps.google.com/maps?' + Uurl.paramsToString(cs)
+  return'https://maps.google.com/maps?' + params
 }
