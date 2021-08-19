@@ -1,6 +1,6 @@
-export * as Type from './type';
+import * as Type from './type';
 import Map from './map'
 
-export {  Map }
+export { Type, Map }
 
 export default Map;
