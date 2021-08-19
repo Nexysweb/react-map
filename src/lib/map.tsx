@@ -18,9 +18,15 @@ export default (props: T.Props) => {
     tabIndex = 0
   } = props;
   const [ geoUrl, setUrl ] = React.useState<string | null>(null);
+  const [ notFound, setNotFound ] = React.useState<boolean>(false);
 
   try {
     Geo.latLonFromAddress(address).then(x => {
+  
+      if (x.length === 0) {
+        setNotFound(true);
+      } 
+
       const { lat, lon } = x[0];
 
       const url = Geo.mapFromLatLon(lat, lon, zoomLevel, props.apiKey, lang);
@@ -28,6 +34,10 @@ export default (props: T.Props) => {
     })
   } catch (err) {
     console.warn(err);
+  }
+  
+  if (notFound) {
+    return <p><i>Address could not be placed on map</i></p>
   }
 
   if (!geoUrl) {
